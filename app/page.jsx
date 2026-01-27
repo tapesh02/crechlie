@@ -6,12 +6,10 @@
 "use client";
 
 import {
-  AppBar,
   Box,
   Button,
   Container,
   Typography,
-  useMediaQuery,
   Card,
   CardContent,
   Stack,
@@ -152,7 +150,7 @@ export default function Home() {
       {/* WHY CRECHLIE / FEATURES */}
       <Box component="section" id="why-crechlie" sx={{ py: { xs: 6, md: 8 } }}>
         <Container maxWidth="lg">
-          <Grid container spacing={4} alignItems="center" justifyConent="center">
+          <Grid container spacing={4} alignItems="center" justifyContent="center">
             <Grid size={{ xs: 12, md: 5 }}>
               <Typography variant="h3" sx={{ mb: 2, fontSize: { xs: 26, md: 30 } }}>
                 Why families choose Crechlie.
