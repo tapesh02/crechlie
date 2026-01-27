@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { createClient } from "../../src/database/client";
+import { createClient } from "@/database/client";
 
 export default function SupabaseTest() {
   const [status, setStatus] = useState("Testing connection...");
