@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { createClient } from "../../src/database/client";
+import { createClient } from "@/database/client";
 import styles from "./dashboard.module.scss";
 
 export default function Dashboard() {
