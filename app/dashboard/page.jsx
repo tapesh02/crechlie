@@ -44,8 +44,8 @@ export default async function Dashboard() {
                 <p id="email">{user?.email}</p>
               </div>
               <div className={styles.infoItem}>
-                <label htmlFor="userId">User ID</label>
-                <p id="userId" className={styles.id}>{user?.id}</p>
+                <label htmlFor="userId">Phone</label>
+                <p id="userId">{user?.phone || "Not provided"}</p>
               </div>
               <div className={styles.infoItem}>
                 <label htmlFor="createdAt">Account Created</label>
@@ -56,13 +56,16 @@ export default async function Dashboard() {
 
           <div className={styles.card}>
             <h2>Session Details</h2>
-            <div className={styles.debugInfo}>
-              <pre>{JSON.stringify({ user, profile }, null, 2)}</pre>
+            <div className={styles.infoGrid}>
+              <div className={styles.infoItem}>
+                <label htmlFor="lastSignIn">Last Sign In</label>
+                <p id="lastSignIn">{new Date(user.last_sign_in_at).toLocaleString()}</p>
+              </div>
             </div>
           </div>
         </div>
 
-        <p className={styles.footer}>🎉 You&apos;re successfully authenticated with Supabase!</p>
+        <p className={styles.footer}>🎉 You&apos;re successfully Signed In!</p>
       </div>
     </div>
   );
