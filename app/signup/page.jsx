@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { createClient } from "../../src/database/client";
+import { createClient } from "@/database/client";
 import styles from "./signup.module.scss";
 
 export default function Signup() {
