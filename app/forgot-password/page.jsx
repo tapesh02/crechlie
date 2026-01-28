@@ -1,8 +1,7 @@
 "use client";
-
 import { useState } from "react";
 import Link from "next/link";
-import { createClient } from "../../src/database/client";
+import { createClient } from "@/database/client";
 import styles from "./forgotpassword.module.scss";
 
 function ForgotPassword() {
@@ -33,22 +32,17 @@ function ForgotPassword() {
         setLoading(false);
         return;
       }
-
-      console.log("📧 Sending password reset email to:", email);
-
       // Send password reset email
       const { error: resetError } = await supabase.auth.resetPasswordForEmail(email, {
         redirectTo: `${window.location.origin}/reset-password`,
       });
 
       if (resetError) {
-        console.error("❌ Password reset error:", resetError);
         setError(resetError.message || "Failed to send reset email. Please try again.");
         setLoading(false);
         return;
       }
 
-      console.log("✅ Password reset email sent successfully");
       setSubmitted(true);
       setMessage(
         `✅ Reset link sent! Check your email at ${email} for instructions to reset your password.`
@@ -60,7 +54,6 @@ function ForgotPassword() {
         setSubmitted(false);
       }, 5000);
     } catch (err) {
-      console.error("❌ Exception during password reset:", err);
       setError(err.message || "An unexpected error occurred. Please try again.");
       setLoading(false);
     }

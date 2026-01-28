@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { createClient } from "../../src/database/client";
+import { createClient } from "@/database/client";
 import styles from "./resetpassword.module.scss";
 
 function ResetPassword() {
@@ -19,7 +19,6 @@ function ResetPassword() {
   const supabase = createClient();
 
   useEffect(() => {
-    // Check if there's a valid reset session
     const checkSession = async () => {
       try {
         const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
@@ -34,7 +33,6 @@ function ResetPassword() {
 
         setSessionValid(true);
       } catch (err) {
-        console.error("Error checking session:", err);
         setError("An error occurred. Please try again.");
       }
     };
@@ -70,20 +68,17 @@ function ResetPassword() {
     setLoading(true);
 
     try {
-      console.log("🔄 Attempting to update password...");
 
       const { error: updateError } = await supabase.auth.updateUser({
         password: password,
       });
 
       if (updateError) {
-        console.error("❌ Password update error:", updateError);
         setError(updateError.message || "Failed to update password. Please try again.");
         setLoading(false);
         return;
       }
 
-      console.log("✅ Password updated successfully");
       setMessage("✅ Password reset successful! Redirecting to sign in...");
       setPassword("");
       setConfirmPassword("");
@@ -93,7 +88,6 @@ function ResetPassword() {
         router.push("/signin");
       }, 2000);
     } catch (err) {
-      console.error("❌ Exception during password reset:", err);
       setError(err.message || "An unexpected error occurred");
       setLoading(false);
     }

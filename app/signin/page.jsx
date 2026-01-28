@@ -1,6 +1,5 @@
 "use client";
 
-import PropTypes from "prop-types";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -23,18 +22,14 @@ function Signin() {
     setLoading(true);
 
     try {
-      console.log("🔐 Attempting to sign in...");
 
-      // Step 1: Sign in with email and password
       const { data: authData, error: signInError } = await supabase.auth.signInWithPassword({
         email,
         password,
       });
 
       if (signInError) {
-        console.error("❌ Sign in error:", signInError);
 
-        // Provide better error messages
         let errorMessage = signInError.message;
         if (signInError.message.includes("Invalid login credentials")) {
           errorMessage = "❌ Invalid email or password. Please check and try again.";
@@ -48,14 +43,9 @@ function Signin() {
         setLoading(false);
         return;
       }
-
-      console.log("✅ Sign in successful");
-
-      // Step 2: Get authenticated user
       const { data: userData, error: userError } = await supabase.auth.getUser();
 
       if (userError) {
-        console.error("❌ Error getting user:", userError);
         setError("Signed in but couldn't fetch user data");
         setLoading(false);
         return;
@@ -72,21 +62,16 @@ function Signin() {
         console.error("Warning: Could not fetch profile:", profileError);
       }
 
-      console.log("👤 User authenticated:", {
-        user: userData.user,
-        profile: profileData,
-      });
+  
 
       setMessage("✅ Sign in successful! Redirecting...");
       setEmail("");
       setPassword("");
 
-      // Step 4: Redirect to dashboard after 1.5 seconds
       setTimeout(() => {
         router.push("/dashboard");
       }, 1500);
     } catch (err) {
-      console.error("❌ Exception during sign in:", err);
       setError(err.message);
       setLoading(false);
     }

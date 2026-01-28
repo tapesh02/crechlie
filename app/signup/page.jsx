@@ -74,7 +74,6 @@ export default function Signup() {
         ]);
 
         if (insertError) {
-          console.error("Database insert error:", insertError);
           setError(`Account created but failed to save profile: ${insertError.message}`);
           setLoading(false);
           return;
@@ -86,9 +85,7 @@ export default function Signup() {
       setPassword("");
       setConfirmPassword("");
       setFullName("");
-      console.log("User created:", authData);
     } catch (err) {
-      console.error("Signup error:", err);
       setError(err.message);
     } finally {
       setLoading(false);
