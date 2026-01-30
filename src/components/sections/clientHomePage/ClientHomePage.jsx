@@ -5,7 +5,7 @@ import { useState } from "react";
 import Header from "@components/sections/header/Header";
 import SearchBar from "@components/sections/searchBar/SearchBar";
 import CrecheCard from "@components/creches/CrecheCard";
-import { crechesData } from "../../../mockdata/creches.js";
+import { crechesData } from "@mockdata/creches.js";
 
 function ClientHomePage() {
   const [filteredCreches, setFilteredCreches] = useState(crechesData);
